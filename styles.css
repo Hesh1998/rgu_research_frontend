@@ -1,0 +1,244 @@
+/* ===========================
+   Theme & Resets
+   =========================== */
+:root{
+  --bg: #f6f7fb;            /* page background */
+  --panel: #ffffff;         /* surface panels */
+  --muted: #6b7280;         /* muted text */
+  --text: #0f172a;          /* primary text */
+  --brand: #2563eb;         /* accent/brand */
+  --brand-2: #0ea5e9;       /* gradient secondary */
+  --bot: #eef2ff;           /* bot bubble bg */
+  --user: #abf7b1;          /* user bubble bg */
+  --bubble-shadow: 0 1px 3px rgba(15,23,42,0.08);
+  --radius: 18px;           /* bubble radius */
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout shell */
+.app{
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--panel);
+  border-left: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* ===========================
+   Topbar
+   =========================== */
+.topbar{
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid #eef2f7;
+  position: sticky; top: 0; background: var(--panel); z-index: 4;
+}
+
+.topbar-left{ display: flex; gap: 12px; align-items: center; }
+.peer-name{ font-weight: 600; }
+
+/* Circle avatar with image or fallback initials */
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;                     /* ensures image fits nicely */
+  background: #e2e8f0;                  /* soft gray fallback */
+  box-shadow: var(--bubble-shadow);
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* If using background-image (for user/chatbot icons) */
+.avatar.bot {
+  background-image: url('./icons/chatbot.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #dbeafe;            /* light blue outline for bot */
+}
+
+.avatar.user {
+  background-image: url('./icons/user.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #e2e8f0;
+}
+
+/* ===========================
+   Chat Window
+   =========================== */
+.chat-window{
+  background: linear-gradient(#f8fafc, #f6f7fb);
+  padding: 20px 16px 8px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Timestamp chips (like screenshots) */
+.time-chip{
+  width: max-content;
+  margin: 12px auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+  background: #f1f5f9;
+  box-shadow: var(--bubble-shadow);
+}
+
+/* Message row */
+.msg{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin:12px 0;
+}
+
+.msg .col{
+  display:flex;
+  flex-direction:column;
+  flex: 1 1 auto;      /* grow to fill space */
+  min-width: 0;        /* allow flex child to shrink instead of overflowing layout */
+}
+
+.msg + .msg {
+  margin-top: 28px;      /* gives more visual rhythm between exchanges */
+}
+
+/* Left (bot) vs right (user) alignment */
+.msg.bot{ justify-content: flex-start; }
+.msg.user{ justify-content: flex-end; }
+
+/* Bubble */
+.bubble{
+  max-width: 100%;
+  padding: 10px 14px;
+  background: var(--bot);
+  border-radius: var(--radius);
+  box-shadow: var(--bubble-shadow);
+  line-height: 1.45;
+  position: relative;
+  word-wrap: break-word;
+}
+
+/* Bot bubble (left) tail */
+.msg.bot .bubble::before{
+  content:"";
+  position:absolute; left:-6px; top:12px;
+  width: 12px; height: 12px; background: var(--bot);
+  transform: rotate(45deg); border-bottom-left-radius: 2px;
+}
+
+/* User bubble visuals */
+.msg.user .bubble{
+  background: var(--user);
+}
+.msg.user .bubble::before{
+  content:"";
+  position:absolute; right:-6px; top:12px;
+  width: 12px; height: 12px; background: var(--user);
+  transform: rotate(45deg);
+}
+
+/* Sender meta (name/time/check) */
+.meta{
+  display: flex; align-items: center; gap:8px;
+  font-size: 12px; color: var(--muted); margin-top: 6px;
+}
+.meta .ok{
+  display:inline-grid; place-items:center;
+  width:16px;height:16px;border-radius:50%; background:#eafaf2; color:#16a34a;
+}
+
+/* Message content spacing next to avatar */
+.msg .col{ display:flex; flex-direction:column; }
+.msg.bot .col{ align-items:flex-start; }
+.msg.user .col{ align-items:flex-end; }
+
+/* Smooth appear */
+@keyframes fadeUp{
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   Composer
+   =========================== */
+.composer{
+  border-top: 1px solid #eef2f7;
+  padding: 10px 12px;
+  background: var(--panel);
+  position: sticky; bottom: 0; z-index: 3;
+}
+.composer-form{
+  display:flex; align-items:flex-end; gap:10px;
+  background:#fff; border:1px solid #e5e7eb; border-radius: 14px;
+  padding: 8px 10px; box-shadow: var(--bubble-shadow);
+}
+.composer-input{
+  flex:1; min-height: 22px; max-height: 160px;
+  border:none; outline:none; resize:none; font: inherit; line-height:1.35;
+  padding: 6px 4px;
+}
+
+.send-btn {
+  display: inline-grid;
+  place-items: center;
+  padding: 10px 14px;
+  gap: 6px;
+
+  background: #f9fafb;             /* flat white-gray background */
+  color: #374151;                  /* dark gray icon/text */
+  border: 1px solid #d1d5db;       /* subtle gray border */
+  border-radius: 10px;
+
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* soft depth */
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.send-btn:hover{ filter: brightness(1.05); }
+
+.send-btn:active {
+  background: #e5e7eb;             /* slightly darker gray when pressed */
+  transform: translateY(1px);      /* tactile press effect */
+}
+
+
+/* Typing indicator */
+.typing{
+  display:flex; align-items:center; gap:8px;
+  padding: 8px 10px; color: var(--muted); font-size: 13px;
+}
+.typing.hidden{ display:none; }
+.dot{
+  width:6px; height:6px; border-radius:50%; background:#94a3b8; display:inline-block;
+  margin-right:4px; animation: bounce 1s infinite ease-in-out;
+}
+.dot:nth-child(2){ animation-delay: .15s; }
+.dot:nth-child(3){ animation-delay: .3s; }
+@keyframes bounce{ 0%,80%,100%{ transform: scale(0.8); opacity:.6 } 40%{ transform: scale(1); opacity:1 } }
+
+/* Small screens */
+@media (max-width: 640px){
+  .app{ border-left:none; border-right:none; }
+  .bubble{ max-width: 92%; }
+  .topbar{ padding: 12px; }
+  .composer{ padding: 8px; }
+}
