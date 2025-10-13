@@ -42,9 +42,9 @@ function getBotResponse(userText) {
   //   .then(data => data.reply);
 
   // 🔸 For now: same response every time
-  return Promise.resolve(
-    "This is a static AI response for testing the chat interface. Replace this later with your dynamic backend output."
-  );
+  const llmSelect = document.getElementById("mode-select");
+  const response = `User request is "${userText}". LLM is "${llmSelect.value}".`;
+  return Promise.resolve(response);
 }
 
 /* Handle user message submission */

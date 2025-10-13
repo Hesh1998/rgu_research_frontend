@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sales Data</title>
+  <title>Analyze Sales Data</title>
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -17,6 +17,18 @@
         <div class="avatar bot" data-initials=""></div>
         <div class="peer">
           <div class="peer-name">Analyze Sales Data</div>
+        </div>
+      </div>
+
+      <!-- Controls area in the topbar -->
+      <div class="topbar-controls">
+        <label for="mode-select" class="sr-only">LLM</label>
+        <div class="select-wrap">
+          <select id="mode-select" class="topbar-select" aria-label="Mode">
+            <option selected>OpenAI GPT-5</option>
+            <option>Google Gemini 2.5 Pro</option>
+            <option>Anthropic Claude Opus 4.1</option>
+          </select>
         </div>
       </div>
     </header>

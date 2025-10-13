@@ -81,6 +81,44 @@ body {
   border: 1px solid #e2e8f0;
 }
 
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.select-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.topbar-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  text-align: center;
+  text-align-last: center;
+  direction: ltr;
+
+  height: 36px;
+  line-height: 36px;
+  padding: 0 12px 0 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.topbar-select:hover {
+  background-color: #f8fafc;
+}
+
 /* ===========================
    Chat Window
    =========================== */
@@ -238,7 +276,19 @@ body {
 /* Small screens */
 @media (max-width: 640px){
   .app{ border-left:none; border-right:none; }
+
   .bubble{ max-width: 92%; }
+
   .topbar{ padding: 12px; }
+
   .composer{ padding: 8px; }
+
+  .topbar-controls {
+    gap: 8px;
+  }
+
+  .topbar-select {
+    height: 34px;
+    line-height: 34px;
+  }
 }
