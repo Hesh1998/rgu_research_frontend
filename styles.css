@@ -129,18 +129,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Timestamp chips (like screenshots) */
-.time-chip{
-  width: max-content;
-  margin: 12px auto;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  color: var(--muted);
-  background: #f1f5f9;
-  box-shadow: var(--bubble-shadow);
-}
-
 /* Message row */
 .msg{
   display:flex;
@@ -213,6 +201,67 @@ body {
 /* Smooth appear */
 @keyframes fadeUp{
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Table styling inside bubbles */
+
+/* Ensure tables inside chat bubbles never overflow */
+.bubble table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 6px;
+
+  /* ✅ Contain the table horizontally */
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;     /* Prevent text wrapping in wide tables */
+  max-width: 100%;
+}
+
+/* ✅ Contain the table vertically (limit visible rows to 8) */
+.bubble table tbody {
+  display: block;
+  max-height: calc(8 * 32px);  /* ~8 rows (adjust if your rows are taller) */
+  overflow-y: auto;
+}
+
+/* ✅ Keep header fixed alignment */
+.bubble table thead,
+.bubble table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* ✅ Style consistency with chat aesthetic */
+.bubble table th,
+.bubble table td {
+  border: 1px solid #e2e8f0;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.bubble table thead {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* ✅ Add subtle rounded corners to top */
+.bubble table {
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ✅ Optional: smooth scroll for long tables */
+.bubble table tbody::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.bubble table tbody::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
 }
 
 /* ===========================
