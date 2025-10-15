@@ -55,110 +55,111 @@ function getBotResponse(userText) {
   // 🔸 For now: same response every time
   const llmSelect = document.getElementById("mode-select");
   // const response = `User request is "${userText}". LLM is "${llmSelect.value}".`;
-  const response = `
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <thead style="background:#f1f5f9;">
+  const response = `<b>Query:</b> select * from dwh.gold.sales_fact left outer join dwh.gold.currency_dim ON dwh.gold.sales_fact.currency_sk = dwh.gold.currency_dim.currency_sk limit 100;<br><br>
+  <b>Output:</b><br><br>
+    <table>
+      <thead>
         <tr>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Metric</th>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Value1</th>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Value2</th>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Value3</th>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Value4</th>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Value5</th>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Value6</th>
-          <th style="border:1px solid #e2e8f0; padding:6px; text-align:left;">Value7</th>
+          <th>Metric</th>
+          <th>Value1</th>
+          <th>Value2</th>
+          <th>Value3</th>
+          <th>Value4</th>
+          <th>Value5</th>
+          <th>Value6</th>
+          <th>Value7</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Sales</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
+          <td>Sales</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Revenue Growth</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
+          <td>Revenue Growth</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Top Region</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
+          <td>Top Region</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Sales</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
+          <td>Sales</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Revenue Growth</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
+          <td>Revenue Growth</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Top Region</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
+          <td>Top Region</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Sales</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">$120,000</td>
+          <td>Sales</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
+          <td>$120,000</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Revenue Growth</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">12%</td>
+          <td>Revenue Growth</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
+          <td>12%</td>
         </tr>
         <tr>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Top Region</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
-          <td style="border:1px solid #e2e8f0; padding:6px;">Europe</td>
+          <td>Top Region</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
+          <td>Europe</td>
         </tr>
       </tbody>
     </table>
