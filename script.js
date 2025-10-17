@@ -1,33 +1,27 @@
-/* Append a new message bubble */
+// Append a new message bubble to the chat window
 function appendMessage({ text, side = "bot" }) {
   const chat = document.getElementById("chat-window");
 
   const msg = document.createElement("div");
   msg.className = `msg ${side}`;
 
-  // Avatar
   const avatar = document.createElement("div");
   avatar.className = `avatar ${side === "bot" ? "bot" : "user"}`;
 
-  // Column
   const col = document.createElement("div");
   col.className = "col";
 
   const bubble = document.createElement("div");
   bubble.className = "bubble";
 
-  // Trim leading/trailing whitespace to remove blank gap
   const trimmed = typeof text === "string" ? text.trim() : "";
 
-  // Detect HTML (e.g., table) and avoid turning newlines into <br>
   const hasHTML = /<([a-z][\w-]*)(\s[^>]*)?>/i.test(trimmed);
 
   if (hasHTML) {
-    // Let HTML render naturally (no forced <br/>s)
     bubble.style.whiteSpace = "normal";
     bubble.innerHTML = trimmed;
   } else {
-    // Plain text: keep manual \n line breaks only
     bubble.innerHTML = trimmed.replace(/\n/g, "<br>");
   }
 
@@ -45,16 +39,14 @@ function appendMessage({ text, side = "bot" }) {
   chat.scrollTop = chat.scrollHeight;
 }
 
-/* Fixed static AI response (for testing) */
-function getBotResponse(userText) {
-  // 🔹 When ready for backend integration, replace this with:
-  // return fetch('/api/chat', { method: 'POST', body: JSON.stringify({ message: userText }) })
-  //   .then(res => res.json())
-  //   .then(data => data.reply);
 
-  // 🔸 For now: same response every time
-  const llmSelect = document.getElementById("llm-select");
-  // const response = `User request is "${userText}". LLM is "${llmSelect.value}".`;
+// Get Response from Backend
+function getBotResponse(userText) {
+  // Backend API call here
+  // userText - User's question
+  // const llmSelect = document.getElementById("llm-select");
+  // llmSelect.value - Selected LLM model
+
   const response = `<b>Query:</b> select * from dwh.gold.sales_fact left outer join dwh.gold.currency_dim ON dwh.gold.sales_fact.currency_sk = dwh.gold.currency_dim.currency_sk limit 100;<br><br>
   <b>Output:</b><br><br>
     <table>
@@ -167,7 +159,8 @@ function getBotResponse(userText) {
   return Promise.resolve(response);
 }
 
-/* Handle user message submission */
+
+// Handle user message submission
 function handleSubmit(e) {
   e.preventDefault();
   const input = document.getElementById("user-input");
@@ -177,7 +170,6 @@ function handleSubmit(e) {
   appendMessage({ text, side: "user" });
   input.value = "";
 
-  // Show typing indicator
   const typing = document.getElementById("typing");
   typing.classList.remove("hidden");
 
@@ -189,7 +181,8 @@ function handleSubmit(e) {
   }, 700);
 }
 
-/* Initialize chat on page load */
+
+// Initialize chat on page load
 document.addEventListener("DOMContentLoaded", () => {
   appendMessage({
     text: "Hi there! Ask what you need to know about Sales Data.",
