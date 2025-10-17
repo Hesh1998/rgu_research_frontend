@@ -1,17 +1,17 @@
 /* ===========================
-   Theme & Resets
+   Theme
    =========================== */
 :root{
-  --bg: #f6f7fb;            /* page background */
-  --panel: #ffffff;         /* surface panels */
-  --muted: #6b7280;         /* muted text */
-  --text: #0f172a;          /* primary text */
-  --brand: #2563eb;         /* accent/brand */
-  --brand-2: #0ea5e9;       /* gradient secondary */
-  --bot: #eef2ff;           /* bot bubble bg */
-  --user: #abf7b1;          /* user bubble bg */
+  --bg: #f6f7fb;
+  --panel: #ffffff;
+  --muted: #6b7280;
+  --text: #0f172a;
+  --brand: #2563eb;
+  --brand-2: #0ea5e9;
+  --bot: #eef2ff;
+  --user: #abf7b1;
   --bubble-shadow: 0 1px 3px rgba(15,23,42,0.08);
-  --radius: 18px;           /* bubble radius */
+  --radius: 18px;
 }
 
 * { box-sizing: border-box; }
@@ -25,7 +25,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Layout shell */
 .app{
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -50,13 +49,12 @@ body {
 .topbar-left{ display: flex; gap: 12px; align-items: center; }
 .peer-name{ font-weight: 600; }
 
-/* Circle avatar with image or fallback initials */
 .avatar {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  overflow: hidden;                     /* ensures image fits nicely */
-  background: #e2e8f0;                  /* soft gray fallback */
+  overflow: hidden;
+  background: #e2e8f0;
   box-shadow: var(--bubble-shadow);
   position: relative;
   display: grid;
@@ -64,13 +62,12 @@ body {
   flex-shrink: 0;
 }
 
-/* If using background-image (for user/chatbot icons) */
 .avatar.bot {
   background-image: url('./icons/chatbot.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border: 1px solid #dbeafe;            /* light blue outline for bot */
+  border: 1px solid #dbeafe;
 }
 
 .avatar.user {
@@ -129,7 +126,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Message row */
 .msg{
   display:flex;
   align-items:flex-start;
@@ -140,19 +136,17 @@ body {
 .msg .col{
   display:flex;
   flex-direction:column;
-  flex: 1 1 auto;      /* grow to fill space */
-  min-width: 0;        /* allow flex child to shrink instead of overflowing layout */
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .msg + .msg {
-  margin-top: 28px;      /* gives more visual rhythm between exchanges */
+  margin-top: 28px;
 }
 
-/* Left (bot) vs right (user) alignment */
 .msg.bot{ justify-content: flex-start; }
 .msg.user{ justify-content: flex-end; }
 
-/* Bubble */
 .bubble{
   max-width: 100%;
   padding: 10px 14px;
@@ -164,7 +158,6 @@ body {
   word-wrap: break-word;
 }
 
-/* Bot bubble (left) tail */
 .msg.bot .bubble::before{
   content:"";
   position:absolute; left:-6px; top:12px;
@@ -172,10 +165,10 @@ body {
   transform: rotate(45deg); border-bottom-left-radius: 2px;
 }
 
-/* User bubble visuals */
 .msg.user .bubble{
   background: var(--user);
 }
+
 .msg.user .bubble::before{
   content:"";
   position:absolute; right:-6px; top:12px;
@@ -183,50 +176,42 @@ body {
   transform: rotate(45deg);
 }
 
-/* Sender meta (name/time/check) */
 .meta{
   display: flex; align-items: center; gap:8px;
   font-size: 12px; color: var(--muted); margin-top: 6px;
 }
+
 .meta .ok{
   display:inline-grid; place-items:center;
   width:16px;height:16px;border-radius:50%; background:#eafaf2; color:#16a34a;
 }
 
-/* Message content spacing next to avatar */
 .msg .col{ display:flex; flex-direction:column; }
 .msg.bot .col{ align-items:flex-start; }
 .msg.user .col{ align-items:flex-end; }
 
-/* Smooth appear */
 @keyframes fadeUp{
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Table styling inside bubbles */
-
-/* Ensure tables inside chat bubbles never overflow */
 .bubble table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
   margin-top: 6px;
 
-  /* ✅ Contain the table horizontally */
   display: block;
   overflow-x: auto;
   white-space: normal;
   max-width: 100%;
 }
 
-/* ✅ Contain the table vertically (limit visible rows to 8) */
 .bubble table tbody {
   display: block;
-  max-height: calc(8 * 32px);  /* ~8 rows (adjust if your rows are taller) */
+  max-height: calc(8 * 32px);
   overflow-y: auto;
 }
 
-/* ✅ Keep header fixed alignment */
 .bubble table thead,
 .bubble table tbody tr {
   display: table;
@@ -234,7 +219,6 @@ body {
   table-layout: fixed;
 }
 
-/* ✅ Style consistency with chat aesthetic */
 .bubble table th,
 .bubble table td {
   border: 1px solid #e2e8f0;
@@ -248,7 +232,6 @@ body {
   color: #1e293b;
 }
 
-/* ✅ Optional: smooth scroll for long tables */
 .bubble table tbody::-webkit-scrollbar {
   height: 6px;
   width: 6px;
@@ -284,25 +267,23 @@ body {
   padding: 10px 14px;
   gap: 6px;
 
-  background: #f9fafb;             /* flat white-gray background */
-  color: #374151;                  /* dark gray icon/text */
-  border: 1px solid #d1d5db;       /* subtle gray border */
+  background: #f9fafb;
+  color: #374151;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
 
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* soft depth */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   transition: background 0.15s ease, transform 0.1s ease;
 }
 
 .send-btn:hover{ filter: brightness(1.05); }
 
 .send-btn:active {
-  background: #e5e7eb;             /* slightly darker gray when pressed */
-  transform: translateY(1px);      /* tactile press effect */
+  background: #e5e7eb;
+  transform: translateY(1px);
 }
 
-
-/* Typing indicator */
 .typing{
   display:flex; align-items:center; gap:8px;
   padding: 8px 10px; color: var(--muted); font-size: 13px;
@@ -316,7 +297,9 @@ body {
 .dot:nth-child(3){ animation-delay: .3s; }
 @keyframes bounce{ 0%,80%,100%{ transform: scale(0.8); opacity:.6 } 40%{ transform: scale(1); opacity:1 } }
 
-/* Small screens */
+/* ===========================
+   Responsive - Small Screens
+   =========================== */
 @media (max-width: 640px){
   .app{ border-left:none; border-right:none; }
 
