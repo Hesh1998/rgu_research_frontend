@@ -53,7 +53,7 @@ function getBotResponse(userText) {
   //   .then(data => data.reply);
 
   // 🔸 For now: same response every time
-  const llmSelect = document.getElementById("mode-select");
+  const llmSelect = document.getElementById("llm-select");
   // const response = `User request is "${userText}". LLM is "${llmSelect.value}".`;
   const response = `<b>Query:</b> select * from dwh.gold.sales_fact left outer join dwh.gold.currency_dim ON dwh.gold.sales_fact.currency_sk = dwh.gold.currency_dim.currency_sk limit 100;<br><br>
   <b>Output:</b><br><br>
