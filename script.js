@@ -62,6 +62,7 @@ function getBotResponse(userText) {
       console.error("Error fetching from backend:", error);
     }
   }
+  fetchBackendData();
 
   const response = `<b>Query:</b> select * from dwh.gold.sales_fact left outer join dwh.gold.currency_dim ON dwh.gold.sales_fact.currency_sk = dwh.gold.currency_dim.currency_sk limit 100;<br><br>
   <b>Output:</b><br><br>
