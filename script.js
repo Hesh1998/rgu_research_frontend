@@ -56,126 +56,55 @@ function getBotResponse(userText) {
       }
 
       const data = await response.text();
-      return Promise.resolve(data);
+
+      const output = `<b>Query:</b> ${data}<br><br>
+                      <b>Output:</b><br><br>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Metric</th>
+                              <th>Value1</th>
+                              <th>Value2</th>
+                              <th>Value3</th>
+                              <th>Value4</th>
+                              <th>Value5</th>
+                              <th>Value6</th>
+                              <th>Value7</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Sales</td>
+                              <td>$120,000</td>
+                              <td>$120,000</td>
+                              <td>$120,000</td>
+                              <td>$120,000</td>
+                              <td>$120,000</td>
+                              <td>$120,000</td>
+                              <td>$120,000</td>
+                            </tr>
+                            <tr>
+                              <td>Revenue Growth</td>
+                              <td>12%</td>
+                              <td>12%</td>
+                              <td>12%</td>
+                              <td>12%</td>
+                              <td>12%</td>
+                              <td>12%</td>
+                              <td>12%</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      `;
+
+      return Promise.resolve(output);
     } catch (error) {
       console.error("Error fetching from backend:", error);
     }
   }
+
   return fetchBackendData();
 
-  /*
-  const response = `<b>Query:</b> select * from dwh.gold.sales_fact left outer join dwh.gold.currency_dim ON dwh.gold.sales_fact.currency_sk = dwh.gold.currency_dim.currency_sk limit 100;<br><br>
-  <b>Output:</b><br><br>
-    <table>
-      <thead>
-        <tr>
-          <th>Metric</th>
-          <th>Value1</th>
-          <th>Value2</th>
-          <th>Value3</th>
-          <th>Value4</th>
-          <th>Value5</th>
-          <th>Value6</th>
-          <th>Value7</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Sales</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-        </tr>
-        <tr>
-          <td>Revenue Growth</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-        </tr>
-        <tr>
-          <td>Top Region</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-        </tr>
-        <tr>
-          <td>Sales</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-        </tr>
-        <tr>
-          <td>Revenue Growth</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-        </tr>
-        <tr>
-          <td>Top Region</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-        </tr>
-        <tr>
-          <td>Sales</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-          <td>$120,000</td>
-        </tr>
-        <tr>
-          <td>Revenue Growth</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-          <td>12%</td>
-        </tr>
-        <tr>
-          <td>Top Region</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-          <td>Europe</td>
-        </tr>
-      </tbody>
-    </table>
-  `;
-  */
-  // return Promise.resolve(response);
-  // return Promise.resolve(backendResponse);
 }
 
 
