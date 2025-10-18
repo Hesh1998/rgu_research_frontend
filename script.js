@@ -47,6 +47,22 @@ function getBotResponse(userText) {
   // const llmSelect = document.getElementById("llm-select");
   // llmSelect.value - Selected LLM model
 
+  let backendResponse = "";
+  async function fetchBackendData() {
+    try {
+      const response = await fetch("http://18.141.147.85:5000/test");
+
+      if (!response.ok) {
+        throw new Error("HTTP error " + response.status);
+      }
+
+      const data = await response.text();
+      backendResponse = data;
+    } catch (error) {
+      console.error("Error fetching from backend:", error);
+    }
+  }
+
   const response = `<b>Query:</b> select * from dwh.gold.sales_fact left outer join dwh.gold.currency_dim ON dwh.gold.sales_fact.currency_sk = dwh.gold.currency_dim.currency_sk limit 100;<br><br>
   <b>Output:</b><br><br>
     <table>
@@ -156,7 +172,8 @@ function getBotResponse(userText) {
       </tbody>
     </table>
   `;
-  return Promise.resolve(response);
+  // return Promise.resolve(response);
+  return Promise.resolve(backendResponse);
 }
 
 
