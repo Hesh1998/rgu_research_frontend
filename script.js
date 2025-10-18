@@ -47,7 +47,6 @@ function getBotResponse(userText) {
   // const llmSelect = document.getElementById("llm-select");
   // llmSelect.value - Selected LLM model
 
-  let backendResponse = "";
   async function fetchBackendData() {
     try {
       const response = await fetch("http://18.141.147.85:5000/test");
@@ -57,7 +56,7 @@ function getBotResponse(userText) {
       }
 
       const data = await response.text();
-      backendResponse = data;
+      return Promise.resolve(data);
     } catch (error) {
       console.error("Error fetching from backend:", error);
     }
@@ -174,7 +173,7 @@ function getBotResponse(userText) {
     </table>
   `;
   // return Promise.resolve(response);
-  return Promise.resolve(backendResponse);
+  // return Promise.resolve(backendResponse);
 }
 
 
