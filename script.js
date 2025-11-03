@@ -42,11 +42,16 @@ function appendMessage({ text, side = "bot" }) {
 
 // Get Response from Backend
 function getBotResponse(userText) {
-  // Backend API call here
-  // userText - User's question
-  // const llmSelect = document.getElementById("llm-select");
-  // llmSelect.value - Selected LLM model
+  const llmSelect = document.getElementById("llm-select");
+  nl_request = `
+  {
+    "llm": "${llmSelect.value}",
+    "question": "${userText}"
+  }
+  `
+  return Promise.resolve(nl_request);
 
+  /*
   async function fetchBackendData() {
     try {
       const response = await fetch("http://18.141.147.85:5000/test");
@@ -102,8 +107,8 @@ function getBotResponse(userText) {
       console.error("Error fetching from backend:", error);
     }
   }
-
   return fetchBackendData();
+  */
 
 }
 
