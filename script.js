@@ -44,26 +44,26 @@ function appendMessage({ text, side = "bot" }) {
 async function getBotResponse(userText) {
   const llmSelect = document.getElementById("llm-select");
   if (llmSelect.value === "OpenAI GPT-5") {
-    llmVal = 'gpt-5';
+    llm = 'gpt-5';
   } else if (llmSelect.value === "Google Gemini 2.5 Pro") {
-    llmVal = 'gem-2.5-pro';
+    llm = 'gem-2.5-pro';
   } else if (llmSelect.value === "Anthropic Claude Opus 4.1") {
-    llmVal = 'opus-4.1';
+    llm = 'opus-4.1';
   }
+
+  var nl_request = {};
+  nl_request["llm"] = llm;
+  nl_request["question"] = userText;
+  var json_nl_request = JSON.stringify(nl_request);
   
-  const nl_request = {
-    llm: llmVal,
-    question: userText
-  };
-  console.log(nl_request)
-  async function fetchBackendData(nl_request) {
+  async function fetchBackendData(requestBody) {
     try {
       const response = await fetch("http://18.141.147.85:5000/query_dwh", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(nl_request)
+        body: json_nl_request
       });
 
       if (!response.ok) {
