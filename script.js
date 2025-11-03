@@ -44,11 +44,11 @@ function appendMessage({ text, side = "bot" }) {
 function getBotResponse(userText) {
   const llmSelect = document.getElementById("llm-select");
   if (llmSelect.value === "OpenAI GPT-5") {
-    llm = 'gpt-5'
+    llm = 'gpt-5';
   } else if (llmSelect.value === "Google Gemini 2.5 Pro") {
-    llm = 'gem-2.5-pro'
+    llm = 'gem-2.5-pro';
   } else if (llmSelect.value === "Anthropic Claude Opus 4.1") {
-    llm = 'opus-4.1'
+    llm = 'opus-4.1';
   }
   
   nl_request = `
@@ -56,20 +56,26 @@ function getBotResponse(userText) {
     "llm": "${llm}",
     "question": "${userText}"
   }
-  `
-  return Promise.resolve(nl_request);
-
-  /*
-  async function fetchBackendData() {
+  `;
+  
+  async function fetchBackendData(nl_request) {
     try {
-      const response = await fetch("http://18.141.147.85:5000/test");
+      const response = await fetch("http://18.141.147.85:5000/query_dwh", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(nl_request)
+      });
 
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
       }
 
-      const data = await response.text();
+      const data = await response.json();
 
+      const output = `<b>Query:</b> ${data}`;
+      /*
       const output = `<b>Query:</b> ${data}<br><br>
                       <b>Output:</b><br><br>
                         <table>
@@ -109,6 +115,7 @@ function getBotResponse(userText) {
                           </tbody>
                         </table>
                       `;
+      */
 
       return Promise.resolve(output);
     } catch (error) {
@@ -116,7 +123,6 @@ function getBotResponse(userText) {
     }
   }
   return fetchBackendData();
-  */
 
 }
 
