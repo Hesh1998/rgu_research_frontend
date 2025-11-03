@@ -44,19 +44,17 @@ function appendMessage({ text, side = "bot" }) {
 function getBotResponse(userText) {
   const llmSelect = document.getElementById("llm-select");
   if (llmSelect.value === "OpenAI GPT-5") {
-    llm = 'gpt-5';
+    llmVal = 'gpt-5';
   } else if (llmSelect.value === "Google Gemini 2.5 Pro") {
-    llm = 'gem-2.5-pro';
+    llmVal = 'gem-2.5-pro';
   } else if (llmSelect.value === "Anthropic Claude Opus 4.1") {
-    llm = 'opus-4.1';
+    llmVal = 'opus-4.1';
   }
   
-  nl_request = `
-  {
-    "llm": "${llm}",
-    "question": "${userText}"
-  }
-  `;
+  const nl_request = {
+    llm: llmVal,
+    question: userText
+  };
   
   async function fetchBackendData(nl_request) {
     try {
