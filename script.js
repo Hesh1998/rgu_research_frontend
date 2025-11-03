@@ -56,71 +56,68 @@ async function getBotResponse(userText) {
   nl_request["question"] = userText;
   var json_nl_request = JSON.stringify(nl_request);
   
-  async function fetchBackendData(requestBody) {
-    try {
-      const response = await fetch("http://18.141.147.85:5000/query_dwh", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: json_nl_request
-      });
+  try {
+    const response = await fetch("http://18.141.147.85:5000/query_dwh", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: json_nl_request
+    });
 
-      if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
-      }
-
-      const data = await response.json();
-      console.log(data)
-      const output = `<b>Query:</b> ${data}`;
-      /*
-      const output = `<b>Query:</b> ${data}<br><br>
-                      <b>Output:</b><br><br>
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>Metric</th>
-                              <th>Value1</th>
-                              <th>Value2</th>
-                              <th>Value3</th>
-                              <th>Value4</th>
-                              <th>Value5</th>
-                              <th>Value6</th>
-                              <th>Value7</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Sales</td>
-                              <td>$120,000</td>
-                              <td>$120,000</td>
-                              <td>$120,000</td>
-                              <td>$120,000</td>
-                              <td>$120,000</td>
-                              <td>$120,000</td>
-                              <td>$120,000</td>
-                            </tr>
-                            <tr>
-                              <td>Revenue Growth</td>
-                              <td>12%</td>
-                              <td>12%</td>
-                              <td>12%</td>
-                              <td>12%</td>
-                              <td>12%</td>
-                              <td>12%</td>
-                              <td>12%</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      `;
-      */
-
-      return Promise.resolve(output);
-    } catch (error) {
-      console.error("Error fetching from backend:", error);
+    if (!response.ok) {
+      throw new Error("HTTP error " + response.status);
     }
+
+    const data = await response.json();
+    console.log(data)
+    const output = `<b>Query:</b> ${data}`;
+    /*
+    const output = `<b>Query:</b> ${data}<br><br>
+                    <b>Output:</b><br><br>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Metric</th>
+                            <th>Value1</th>
+                            <th>Value2</th>
+                            <th>Value3</th>
+                            <th>Value4</th>
+                            <th>Value5</th>
+                            <th>Value6</th>
+                            <th>Value7</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Sales</td>
+                            <td>$120,000</td>
+                            <td>$120,000</td>
+                            <td>$120,000</td>
+                            <td>$120,000</td>
+                            <td>$120,000</td>
+                            <td>$120,000</td>
+                            <td>$120,000</td>
+                          </tr>
+                          <tr>
+                            <td>Revenue Growth</td>
+                            <td>12%</td>
+                            <td>12%</td>
+                            <td>12%</td>
+                            <td>12%</td>
+                            <td>12%</td>
+                            <td>12%</td>
+                            <td>12%</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    `;
+    */
+
+    return Promise.resolve(output);
+  } catch (error) {
+    console.error("Error fetching from backend:", error);
   }
-  return fetchBackendData();
 
 }
 
