@@ -41,7 +41,7 @@ function appendMessage({ text, side = "bot" }) {
 
 
 // Get Response from Backend
-function getBotResponse(userText) {
+async function getBotResponse(userText) {
   const llmSelect = document.getElementById("llm-select");
   if (llmSelect.value === "OpenAI GPT-5") {
     llmVal = 'gpt-5';
