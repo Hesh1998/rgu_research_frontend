@@ -43,9 +43,17 @@ function appendMessage({ text, side = "bot" }) {
 // Get Response from Backend
 function getBotResponse(userText) {
   const llmSelect = document.getElementById("llm-select");
+  if (llmSelect.value === "OpenAI GPT-5") {
+    llm = 'gpt-5'
+  } else if (llmSelect.value === "Google Gemini 2.5 Pro") {
+    llm = 'gem-2.5-pro'
+  } else if (llmSelect.value === "Anthropic Claude Opus 4.1") {
+    llm = 'opus-4.1'
+  }
+  
   nl_request = `
   {
-    "llm": "${llmSelect.value}",
+    "llm": "${llm}",
     "question": "${userText}"
   }
   `
