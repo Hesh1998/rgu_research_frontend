@@ -55,7 +55,7 @@ async function getBotResponse(userText) {
     llm: llmVal,
     question: userText
   };
-  
+  console.log(nl_request)
   async function fetchBackendData(nl_request) {
     try {
       const response = await fetch("http://18.141.147.85:5000/query_dwh", {
