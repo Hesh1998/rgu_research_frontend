@@ -70,8 +70,7 @@ async function getBotResponse(userText) {
     }
 
     const data = await response.json();
-    console.log(data)
-    const output = `<b>Query:</b> ${data}`;
+    const output = `<b>Query:</b> ${data.query}<br>${len(data.result)}`;
     /*
     const output = `<b>Query:</b> ${data}<br><br>
                     <b>Output:</b><br><br>
