@@ -70,48 +70,34 @@ async function getBotResponse(userText) {
     }
 
     const data = await response.json();
-    const output = `<b>Query:</b> ${data.query}<br>${data.result.length}`;
-    /*
-    const output = `<b>Query:</b> ${data}<br><br>
-                    <b>Output:</b><br><br>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Metric</th>
-                            <th>Value1</th>
-                            <th>Value2</th>
-                            <th>Value3</th>
-                            <th>Value4</th>
-                            <th>Value5</th>
-                            <th>Value6</th>
-                            <th>Value7</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Sales</td>
-                            <td>$120,000</td>
-                            <td>$120,000</td>
-                            <td>$120,000</td>
-                            <td>$120,000</td>
-                            <td>$120,000</td>
-                            <td>$120,000</td>
-                            <td>$120,000</td>
-                          </tr>
-                          <tr>
-                            <td>Revenue Growth</td>
-                            <td>12%</td>
-                            <td>12%</td>
-                            <td>12%</td>
-                            <td>12%</td>
-                            <td>12%</td>
-                            <td>12%</td>
-                            <td>12%</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    `;
-    */
+
+    var tableHTML = "<table><thead><tr>";
+
+    if (data.result.length > 0) {
+      const columns = Object.keys(data.result[0]);
+      columns.forEach(col => {
+        tableHTML += `<th>${col}</th>`;
+      });
+      tableHTML += "</tr></thead><tbody>";
+
+      data.result.forEach(row => {
+        tableHTML += "<tr>";
+        columns.forEach(col => {
+          tableHTML += `<td>${row[col]}</td>`;
+        });
+        tableHTML += "</tr>";
+      });
+
+      tableHTML += "</tbody></table>";
+    } else {
+      tableHTML += "<th>No Results</th></tr></thead></table>";
+    }
+
+    const output = `
+      <b>Query:</b> ${data.query}<br><br>
+      <b>Output:</b><br><br>
+      ${tableHTML}
+    `;
 
     return Promise.resolve(output);
   } catch (error) {
