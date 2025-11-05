@@ -94,6 +94,7 @@ async function getBotResponse(userText) {
     }
 
     const output = `
+      <b>LLM:</b> ${llmSelect.value}<br><br>
       <b>Query:</b> ${data.query}<br><br>
       <b>Output:</b><br><br>
       ${tableHTML}
